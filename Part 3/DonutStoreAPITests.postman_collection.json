@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "1fcbecce-cc2e-41c8-8ddc-62b656fecf74",
+		"name": "DonutStoreAPITests",
+		"description": "Automated Tests for DonutStore API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Getting all locations from the database",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost/store/api/locations.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"store",
+						"api",
+						"locations.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adding a location to the database",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost/store/api/locations.php/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"store",
+						"api",
+						"locations.php",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost/store/api/locations.php?id=7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"store",
+						"api",
+						"locations.php"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
