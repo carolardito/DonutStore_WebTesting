@@ -45,7 +45,7 @@
          </a>
       </p>
       <p class="level-item has-text-centered">
-        <a href="menu.php" class="link is-info">Menu</a>
+        <a href="menu.php" class="link is-info" id="menu_btn">Menu</a>
       </p>
       <p class="level-item has-text-centered">
         <a href="cart.php" class="button is-danger is-outlined">

@@ -85,7 +85,7 @@
 
 		<br>
 
-		<a href="add-product.php" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+		<a href="add-product.php" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="addProduct_btn">
 			+ Add Product
 		</a>
 	  </div>

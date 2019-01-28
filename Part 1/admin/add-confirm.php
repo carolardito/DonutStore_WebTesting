@@ -51,7 +51,7 @@
 	  <div class="mdl-cell mdl-cell--12-col">
 		<p> Put some messages here? </p>
 
-		<a href="show-products.php" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+		<a href="show-products.php" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="goBack_btn">
 			< Go Back
 		</a>
 	  </div>
