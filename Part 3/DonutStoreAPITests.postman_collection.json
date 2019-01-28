@@ -8,6 +8,49 @@
 	"item": [
 		{
 			"name": "Getting all locations from the database",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "714926b5-feef-44ee-9186-2cfb970dc217",
+						"exec": [
+							"",
+							"//Does the response have all the correct parameters? (code, message, count, locations)",
+							"var keys = [\"code\", \"message\", \"count\", \"locations\"/*, \"id\", \"name\", \"street\", \"city\", \"province\", \"postal_code\"*/];",
+							"",
+							"for (var i = 0; i < keys.length; i++){",
+							"    tests[\"Response contains a '\"+ keys[i] +\"' key\"] = responseBody.has(keys[i]);",
+							"}",
+							"",
+							"//Does the total number of items retrieved from the database match the value shown in the count parameter",
+							"var dataFromJSON = JSON.parse(responseBody);",
+							"var countItems = dataFromJSON.locations.length;",
+							"var results = false;",
+							"",
+							"if (dataFromJSON.count === countItems) {",
+							"    results = true;",
+							"}else{",
+							"    results = false;",
+							"}",
+							"",
+							"tests[\"Response cointains the same amount of items as shown\"] = results;",
+							"",
+							"//Does the message parameter contain the same text as the what is shown in the  documentation",
+							"var resultMessage = false",
+							"if (dataFromJSON.message === \"success\"){",
+							"    resultMessage = true;",
+							"}",
+							"",
+							"tests[\"Response message correct\"] = resultMessage;",
+							"",
+							"//status code",
+							"tests[\"Response returns status code 200\"] = responseCode.code === 200",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -33,6 +76,40 @@
 		},
 		{
 			"name": "Adding a location to the database",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "07ac16d0-90f0-4cc8-8c52-3d7df8f6195a",
+						"exec": [
+							"//Does the request return with the correct status code?",
+							"tests[\"Response returns status code 201\"] = responseCode.code === 201",
+							"",
+							"//Does the request return the correct parameters per documentation?",
+							"var dataFromJSON = JSON.parse(responseBody);",
+							"var keys = [\"code\", \"message\"];",
+							"for (var i = 0; i < keys.length; i++){",
+							"    tests[\"Response contains a '\"+ keys[i] +\"' key\"] = responseBody.has(keys[i]);",
+							"}",
+							"",
+							"//code",
+							"var resultCode = false",
+							"if (dataFromJSON.code === \"1\"){",
+							"    resultCode = true;",
+							"}",
+							"tests[\"Response code correct\"] = resultCode;",
+							"",
+							"//message",
+							"var resultMessage = false",
+							"if (dataFromJSON.message === \"Item added\"){",
+							"    resultMessage = true;",
+							"}",
+							"tests[\"Response message correct\"] = resultMessage;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -86,6 +163,40 @@
 		},
 		{
 			"name": "request to Delete ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5bf9bc4c-b448-44dc-9265-f4ccaf209f08",
+						"exec": [
+							"//Does the DELETE request return the correct status code?",
+							"tests[\"Response returns status code 405\"] = responseCode.code === 405",
+							"",
+							"//Does the DELETE request return the correct response body?",
+							"var dataFromJSON = JSON.parse(responseBody);",
+							"var keys = [\"code\", \"message\"];",
+							"for (var i = 0; i < keys.length; i++){",
+							"    tests[\"Response contains a '\"+ keys[i] +\"' key\"] = responseBody.has(keys[i]);",
+							"}",
+							"",
+							"//code",
+							"var resultCode = false",
+							"if (dataFromJSON.code === \"-1\"){",
+							"    resultCode = true;",
+							"}",
+							"tests[\"Response code correct\"] = resultCode;",
+							"",
+							"//message",
+							"var resultMessage = false",
+							"if (dataFromJSON.message === \"error\"){",
+							"    resultMessage = true;",
+							"}",
+							"tests[\"Response message correct\"] = resultMessage;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
