@@ -16,13 +16,14 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost/store/api/locations.php",
+					"raw": "http://localhost/DonutStore_WebTesting/Part%201/api/locations.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"path": [
-						"store",
+						"DonutStore_WebTesting",
+						"Part%201",
 						"api",
 						"locations.php"
 					]
@@ -33,7 +34,7 @@
 		{
 			"name": "Adding a location to the database",
 			"request": {
-				"method": "PUT",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -42,25 +43,49 @@
 						"type": "text"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Lambton",
+							"type": "text"
+						},
+						{
+							"key": "street",
+							"value": "265 Yorkland Blv",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "North York",
+							"type": "text"
+						},
+						{
+							"key": "province",
+							"value": "Ontario",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "http://localhost/store/api/locations.php/",
+					"raw": "http://localhost/DonutStore_WebTesting/Part%201/api/locations.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"path": [
-						"store",
+						"DonutStore_WebTesting",
+						"Part%201",
 						"api",
-						"locations.php",
-						""
+						"locations.php"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "test",
+			"name": "request to Delete ",
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -69,20 +94,22 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost/store/api/locations.php?id=7",
+					"raw": "http://localhost/DonutStore_WebTesting/Part%201/api/locations.php?",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"path": [
-						"store",
+						"DonutStore_WebTesting",
+						"Part%201",
 						"api",
 						"locations.php"
 					],
 					"query": [
 						{
 							"key": "id",
-							"value": "7"
+							"value": "11",
+							"disabled": true
 						}
 					]
 				}

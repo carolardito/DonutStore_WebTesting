@@ -13,14 +13,20 @@
 
 		$results = mysqli_query($conn, $query);
 
-		$items = array();
+		$locations = array();
+		$count = 0;
 		while( $product = mysqli_fetch_assoc($results) ) {
-			array_push($items, $product);
+			array_push($locations, $product);
+			$count = $count+1;
 		}
 
+		// build the JSON response
+		$reply  = array("code"=>"1", "message"=>"success", "count"=>$count, "locations"=>$locations);
+
+
 		// send the results as JSON
-		sendJSONReply($items);
-		
+		sendJSONReply($reply);
+
 	}
 	else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		// 1. if post request, then make a new item in the database
@@ -42,33 +48,48 @@
 
 		if ($results) {
 			// reply with a success message
-			
+
 			/*
 			response looks like this:
 				{
-					"code":1, 
+					"code":1,
 					"message":"item added"
 				}
 			*/
-			$items = array("code"=>"1", "message"=>"Item Added.");
+
+			$items = array("code"=>"1", "message"=>"Item added");
 			sendJSONReply($items);
-			
+
 		}
 		else {
 			$items = array("code"=>"-1", "message"=>"Error while adding.");
 			sendJSONReply($items);
-			
+
 			echo mysqli_error($conn);
 		}
 
 
 	}
+	else {
+		$items = array("code"=>"1", "message"=>"error");
+		sendJSONReply($items, 405);
+	}
 
-	function sendJSONReply($items) {
+	function sendJSONReply($items, $code=200) {
 		// send it back as json
+
+		// set the header
 		header("Content-Type: application/json");
 
+		// set the status code
+		if ($code != 200) {
+			http_response_code($code);
+		}
+
+		// set the content
 		$json = json_encode($items);
+
+		// deal with errors
 		if ($json === false) {
 			// sometimes you get an error when converting
 			// your data to json format
