@@ -11,7 +11,7 @@
 
 	$results = mysqli_query($conn, $query);
 
-	print_r($results);
+	//print_r($results);
 ?>
 <?php
 	// UI BOBAGEM => importing the html for the header
